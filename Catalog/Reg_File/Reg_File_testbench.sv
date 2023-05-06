@@ -9,22 +9,23 @@
 
 `timescale 1ns/100ps
 
-`include "./example.sv" //name of module here
+`include "./Reg_File.sv" //name of module here
 
-module example_tb;
+module eReg_File_tb;
 
     //
    // ---------------- PORT DECLARATIONS ----------------
    //
-   reg [3:0] a, b;   
-   wire [3:0] c;     
+   reg   [31:0] A1, A2, A3;   
+   reg          WE, clk; 
+   wire  [31:0] RD1, RD2, WD;     
    
    //
    // ---------------- INITIALIZE TEST BENCH ----------------
    //
    initial
      begin
-        $dumpfile("example.vcd"); // for Makefile, make dump file same as module name
+        $dumpfile("Reg_File.vcd"); // for Makefile, make dump file same as module name
         $dumpvars(0, uut);
       //   $monitor("A is %b, B is %b, C is %b", a, b, c);
       //   #50 A = 4'b1100;
@@ -49,9 +50,8 @@ module example_tb;
    //
    // ---------------- INSTANTIATE UNIT UNDER TEST (UUT) ----------------
    //
-   example uut(.A(a), .B(b), .C(c));
+   Reg_File uut(.A(a), .B(b), .C(c));
 
 endmodule
 
 // `endif // example_tb
-

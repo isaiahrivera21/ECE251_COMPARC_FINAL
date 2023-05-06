@@ -35,14 +35,16 @@ module example_tb;
    //apply input vectors
    initial
    begin: apply_stimulus
-      #10 A = 16'b1100011111101010; //16 bit number to be sign extended 
+      #10 A = 16'b0100011111101010; //16 bit number to be sign extended 
+      #40 
       // $display("16_bit_number=%b, 32_bit_number=%b" A, B); 
-      $finish;
+      $display("MSB = %b    16_bit: %b    32_bit=%b",A[15], A,B); 
+      // $finish;
    end
    //
    // ---------------- INSTANTIATE UNIT UNDER TEST (UUT) ----------------
    //
-   Sign_Extend uut(.A(A), .B(B));
+   Sign_Extend uut(.A(A), .B(B)); 
 
 endmodule
 // `endif // example_tb

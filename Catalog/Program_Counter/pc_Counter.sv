@@ -12,19 +12,20 @@
 `ifndef PC_COUNTER
 `define PC_COUNTER
 
-module pc_Counter();
+module pc_Counter(pc,clk,pc_next);
 
    //
    // ---------------- PARAMETER DECLARATIONS ----------------
    //
    parameter n = 32; 
 
+
    //
    // ---------------- PORT DEFINITIONS ----------------
    //
    input    [(n-1):0] pc; 
    input    clk; 
-   output   [(n-1):0] pc_next; 
+   output logic   [(n-1):0] pc_next; 
    //
    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
    //

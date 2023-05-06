@@ -25,15 +25,17 @@ module Sign_Extend(A,B);
    // ---------------- PORT DEFINITIONS ----------------
    //
 
-   input    [(m -1):0] A; 
-   output   [(n -1):0] B;   
+   input    [(m - 1):0] A; 
+   output   [(n - 1):0] B;   
 
    //
    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
    //
    // assign bit m to bits [(m + 1) : n]
    // bits 
-   assign B[(n -1):m] = A[n]; 
+   assign B[(m-1):0]  =  A[(m-1):0]; 
+   assign B[(n-1):m]  = {{(n - m) {A[(m-1)]}}}; 
+   
 
 
 endmodule

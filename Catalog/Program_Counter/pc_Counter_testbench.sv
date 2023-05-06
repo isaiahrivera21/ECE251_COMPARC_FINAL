@@ -9,22 +9,23 @@
 
 `timescale 1ns/100ps
 
-`include "./example.sv" //name of module here
+`include "./pc_Counter.sv" //name of module here
 
-module example_tb;
+module pc_Counter_tb;
 
    //
    // ---------------- PORT DECLARATIONS ----------------
    //
-   reg [3:0] a, b;   
-   wire [3:0] c;     
+   reg [31:0] pc;  
+   wire [31:0] pc_next;  
+   reg clk;    
    
    //
    // ---------------- INITIALIZE TEST BENCH ----------------
    //
    initial
      begin
-        $dumpfile("example.vcd"); // for Makefile, make dump file same as module name
+        $dumpfile("pc_Counter.vcd"); // for Makefile, make dump file same as module name
         $dumpvars(0, uut);
       //   $monitor("A is %b, B is %b, C is %b", a, b, c);
       //   #50 A = 4'b1100;
@@ -32,24 +33,22 @@ module example_tb;
      end
 
    //apply input vectors
-   initial
-   begin: apply_stimulus
-      reg[3:0] invect; //invect[3] terminates the for loop
-      for (invect = 0; invect < 8; invect = invect + 1)
-      begin
-         // {a, b, cin} = invect [3:0];
-         // #10 $display ("abcin = %b, cout = %b, sum = %b", {a, b, cin}, cout, sum);
-         {a} = invect [3:0];
-         {b} = ~invect [3:0];
-         #10 $display("a=%b, b=%b, c=%b", a, b, c);
-      end
-      $finish;
-   end
+      initial begin
+      clk=0;
+         forever #10 clk = ~clk;  
+      end 
 
+   initial begin 
+      pc <= 5'h1A;
+      #10;
+      pc <= 32'b0;
+      #10;
+      $finish(1);
+end 
    //
    // ---------------- INSTANTIATE UNIT UNDER TEST (UUT) ----------------
    //
-   example uut(.A(a), .B(b), .C(c));
+   pc_Counter uut(.pc(pc), .clk(clk), .pc_next(pc_next));
 
 endmodule
 

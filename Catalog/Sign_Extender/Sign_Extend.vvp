@@ -1,0 +1,68 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)" "(v12_0-dirty)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 10;
+:vpi_module "/usr/lib/ivl/system.vpi";
+:vpi_module "/usr/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/ivl/va_math.vpi";
+:vpi_module "/usr/lib/ivl/v2009.vpi";
+S_0x55a8538c1ec0 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x55a8538c2050 .scope module, "example_tb" "example_tb" 3 15;
+ .timescale -9 -10;
+v0x55a8538d4b60_0 .var "A", 15 0;
+v0x55a8538d4c20_0 .net "B", 31 0, L_0x55a8538d4de0;  1 drivers
+S_0x55a853887cd0 .scope begin, "apply_stimulus" "apply_stimulus" 3 37, 3 37 0, S_0x55a8538c2050;
+ .timescale -9 -10;
+S_0x55a853887e60 .scope module, "uut" "Sign_Extend" 3 47, 4 15 0, S_0x55a8538c2050;
+ .timescale 0 0;
+    .port_info 0 /INPUT 16 "A";
+    .port_info 1 /OUTPUT 32 "B";
+P_0x55a8538ad710 .param/l "m" 0 4 22, +C4<00000000000000000000000000010000>;
+P_0x55a8538ad750 .param/l "n" 0 4 21, +C4<00000000000000000000000000100000>;
+L_0x55a8538d4cf0 .functor BUFZ 16, v0x55a8538d4b60_0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+v0x55a8538adff0_0 .net "A", 15 0, v0x55a8538d4b60_0;  1 drivers
+v0x55a8538d4640_0 .net "B", 31 0, L_0x55a8538d4de0;  alias, 1 drivers
+v0x55a8538d4720_0 .net *"_ivl_11", 15 0, L_0x55a8538d5370;  1 drivers
+v0x55a8538d4810_0 .net *"_ivl_3", 15 0, L_0x55a8538d4cf0;  1 drivers
+v0x55a8538d48f0_0 .net *"_ivl_8", 0 0, L_0x55a8538d4f40;  1 drivers
+v0x55a8538d4a20_0 .net *"_ivl_9", 15 0, L_0x55a8538d4fe0;  1 drivers
+L_0x55a8538d4de0 .concat8 [ 16 16 0 0], L_0x55a8538d4cf0, L_0x55a8538d5370;
+L_0x55a8538d4f40 .part v0x55a8538d4b60_0, 15, 1;
+LS_0x55a8538d4fe0_0_0 .concat [ 1 1 1 1], L_0x55a8538d4f40, L_0x55a8538d4f40, L_0x55a8538d4f40, L_0x55a8538d4f40;
+LS_0x55a8538d4fe0_0_4 .concat [ 1 1 1 1], L_0x55a8538d4f40, L_0x55a8538d4f40, L_0x55a8538d4f40, L_0x55a8538d4f40;
+LS_0x55a8538d4fe0_0_8 .concat [ 1 1 1 1], L_0x55a8538d4f40, L_0x55a8538d4f40, L_0x55a8538d4f40, L_0x55a8538d4f40;
+LS_0x55a8538d4fe0_0_12 .concat [ 1 1 1 1], L_0x55a8538d4f40, L_0x55a8538d4f40, L_0x55a8538d4f40, L_0x55a8538d4f40;
+L_0x55a8538d4fe0 .concat [ 4 4 4 4], LS_0x55a8538d4fe0_0_0, LS_0x55a8538d4fe0_0_4, LS_0x55a8538d4fe0_0_8, LS_0x55a8538d4fe0_0_12;
+L_0x55a8538d5370 .concat [ 16 0 0 0], L_0x55a8538d4fe0;
+    .scope S_0x55a8538c2050;
+T_0 ;
+    %vpi_call/w 3 28 "$dumpfile", "Sign_Extend.vcd" {0 0 0};
+    %vpi_call/w 3 29 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x55a853887e60 {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x55a8538c2050;
+T_1 ;
+    %fork t_1, S_0x55a853887cd0;
+    %jmp t_0;
+    .scope S_0x55a853887cd0;
+t_1 ;
+    %delay 100, 0;
+    %pushi/vec4 18410, 0, 16;
+    %store/vec4 v0x55a8538d4b60_0, 0, 16;
+    %delay 400, 0;
+    %vpi_call/w 3 41 "$display", "MSB = %b    16_bit: %b    32_bit=%b", &PV<v0x55a8538d4b60_0, 15, 1>, v0x55a8538d4b60_0, v0x55a8538d4c20_0 {0 0 0};
+    %end;
+    .scope S_0x55a8538c2050;
+t_0 %join;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "testbench_template.sv";
+    "Sign_Extend.sv";
