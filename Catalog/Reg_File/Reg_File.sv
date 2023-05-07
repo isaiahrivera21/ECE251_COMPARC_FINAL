@@ -3,7 +3,7 @@
 //      Module: Instruction Memeory  
 //      Hdl: Verilog
 //
-//      Module Description: Extracts an instruction from a memeory adress 
+//      Module Description: Register file containing 32 registers 
 //
 //      Author: Your Name <your.name@cooper.edu>
 //
@@ -12,22 +12,23 @@
 `ifndef REG_FILE
 `define REG_FILE
 
-module Reg_File();
+module Reg_File(A1,A2,A3,WD,WE,clk,RD1,RD2);
 
    //
    // ---------------- PARAMETER DECLARATIONS ----------------
    //
-   parameter n = 5; //number of registers to read 
-   parameter m = 32; //how many bits a register can hold 
+   parameter n = 5; 
+   parameter m = 32; 
    
    //
    // ---------------- PORT DEFINITIONS ----------------
    //
    
    input    [(n - 1):0] A1, A2, A3;  //instruction ports 
+   input    [(m - 1):0] WD; 
    input                WE, clk;     //write enable and clk (both 1 bit)
-   output   [(m - 1):0] RD1, RD2, WD; 
-   reg [m:0] register [m]  //32 registers that are 32 bits wide 
+   output logic   [(m - 1):0] RD1, RD2; 
+   reg [m:0] register [m];  //32 registers that are 32 bits wide 
 
    //
    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------

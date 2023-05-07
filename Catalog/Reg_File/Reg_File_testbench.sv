@@ -16,9 +16,10 @@ module eReg_File_tb;
     //
    // ---------------- PORT DECLARATIONS ----------------
    //
-   reg   [31:0] A1, A2, A3;   
+   reg   [4:0] A1, A2, A3;   
+   reg   [31:0] WD;
    reg          WE, clk; 
-   wire  [31:0] RD1, RD2, WD;     
+   wire  [31:0] RD1, RD2;     
    
    //
    // ---------------- INITIALIZE TEST BENCH ----------------
@@ -32,25 +33,38 @@ module eReg_File_tb;
       //   #50 $finish;
      end
 
+   initial 
+      begin
+      clk = 0;
+         forever #10 clk = ~clk;  
+      end 
+
    //apply input vectors
    initial
    begin: apply_stimulus
-      reg[3:0] invect; //invect[3] terminates the for loop
-      for (invect = 0; invect < 8; invect = invect + 1)
-      begin
-         // {a, b, cin} = invect [3:0];
-         // #10 $display ("abcin = %b, cout = %b, sum = %b", {a, b, cin}, cout, sum);
-         {a} = invect [3:0];
-         {b} = ~invect [3:0];
-         #10 $display("a=%b, b=%b, c=%b", a, b, c);
-      end
+      //lets try writtin to a register
+      WE = 1;  //allowed to write to a register 
+      #10;
+      A3 = 5'b11010; //write to reg 1 
+      #10;
+      WD = 10001111111110101111001110111101; 
+      #10; 
+      WE = 0; 
+      #10; 
+      A1 = 1'b0; //read to reg 1 
+      #10;
+      $display("Register: %b     Data in Reg: %b", A1, RD1);
+      #10;
+      A2 = 5'b11010; 
+      #10
+      $display("Register: %b     Data in Reg: %b", A2, RD2);
       $finish;
    end
 
    //
    // ---------------- INSTANTIATE UNIT UNDER TEST (UUT) ----------------
    //
-   Reg_File uut(.A(a), .B(b), .C(c));
+   Reg_File uut(.A1(A1), .A2(A2), .A3(A3), .WD(WD), .WE(WE), .clk(clk), .RD1(RD1), .RD2(RD2));
 
 endmodule
 
