@@ -25,11 +25,29 @@
 
 
 //need a text file to put in for instruction memory 
-module CPU(clock,clock_enable,reg_dst,reg_write,alu_src,mem_write,mem_to_reg, alu_ctrl, alu_out,result, pc_plus_4);
+module CPU(reg_dst,reg_write,alu_src,mem_write,mem_to_reg, alu_ctrl, alu_out,result, pc_plus_4);
 
    //
    // ---------------- PARAMETER DECLARATIONS ----------------
    //
+
+   reg CLK; 
+
+   initial begin
+
+      CLK <= 0;
+
+      forever
+
+      begin
+
+      #40;
+
+      CLK = ~CLK;
+
+      end
+
+      end
    parameter n = 32; //CPU is 32 bits 
    parameter m = 5; 
 
@@ -38,8 +56,8 @@ module CPU(clock,clock_enable,reg_dst,reg_write,alu_src,mem_write,mem_to_reg, al
    //
    //input logic    [(n-1): 0] pc_n; //adress our text starts at 
    input logic    rst; 
-   input logic    clock;  //might need to a logic 
-   input logic    clock_enable; 
+   // input reg      clock;  //might need to a logic 
+   // input logic    clock_enable; 
 
    //for now w/ no control unit we will make the contorl inputs input logics to test it out 
    input logic    reg_dst; 
@@ -71,7 +89,8 @@ module CPU(clock,clock_enable,reg_dst,reg_write,alu_src,mem_write,mem_to_reg, al
    //
    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
    //
-   clock clk(clock_enable,clock); 
+   
+   clock clk(1'b1,clock); 
    pc_Counter program_count(pc_plus_4,clock,pc);                      //??? pc_plus_4 needs to now be equal to pc_n
    pcAdder pc_plus4(pc,rst,pc_plus_4); 
    instrMem instr_mem(pc,instr); 
