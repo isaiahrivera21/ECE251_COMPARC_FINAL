@@ -14,6 +14,15 @@ module instrMem_tb;
       .instr(instr)
    );
 
+   initial
+     begin
+        $dumpfile("instrMem.vcd"); // for Makefile, make dump file same as module name
+        $dumpvars(0, uut);
+      //   $monitor("A is %b, B is %b, C is %b", a, b, c);
+      //   #50 A = 4'b1100;
+      //   #50 $finish;
+     end
+
    initial begin
       // Initialize Inputs
       pc = 32'h00000000; 

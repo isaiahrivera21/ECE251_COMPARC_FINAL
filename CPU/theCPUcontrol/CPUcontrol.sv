@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module CPUcontrol(
-      input[5:0] opcode,
+      input [5:0] opcode,
       output reg[1:0] aluOP,
       output reg regWrite, regDesination, aluSource, Branch, memWrite, memToReg, jump, jal, jr ,mem_read    
     );

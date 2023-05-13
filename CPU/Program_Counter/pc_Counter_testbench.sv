@@ -16,8 +16,8 @@ module pc_Counter_tb;
    //
    // ---------------- PORT DECLARATIONS ----------------
    //
-   reg [31:0] pc;  
-   wire [31:0] pc_next;  
+   reg [31:0] pc_next;  
+   wire [31:0] pc;  
    reg clk;    
    
    //
@@ -39,9 +39,9 @@ module pc_Counter_tb;
       end 
 
    initial begin 
-      pc <= 5'h1A;
+      pc_next <= 5'h1A;
       #10;
-      pc <= 32'b0;
+      pc_next <= 32'b0;
       #10;
       $finish(1);
 end 
