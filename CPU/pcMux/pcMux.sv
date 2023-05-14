@@ -16,5 +16,8 @@ module pcMux
         begin
             Y = B;
         end
+
+    // assign Y = Sel ? A : B;
     end
+
 endmodule

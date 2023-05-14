@@ -18,7 +18,7 @@ module pc_Counter_tb;
    //
    reg [31:0] pc_next;  
    wire [31:0] pc;  
-   reg clk;    
+   reg clk, rst;    
    
    //
    // ---------------- INITIALIZE TEST BENCH ----------------
@@ -39,6 +39,11 @@ module pc_Counter_tb;
       end 
 
    initial begin 
+      #40 rst = 1;
+      pc_next <= 5'h1A;
+      #100
+      rst = 0;
+      #50 
       pc_next <= 5'h1A;
       #10;
       pc_next <= 32'b0;
@@ -48,7 +53,7 @@ end
    //
    // ---------------- INSTANTIATE UNIT UNDER TEST (UUT) ----------------
    //
-   pc_Counter uut(.pc(pc), .clk(clk), .pc_next(pc_next));
+   pc_Counter uut(.pc(pc), .clk(clk), .rst(rst), .pc_next(pc_next));
 
 endmodule
 

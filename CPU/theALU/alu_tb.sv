@@ -11,10 +11,11 @@ module alu_tb;
   wire [31:0] hi; 
   wire [31:0] lo; 
   wire [31:0] remain; 
+  wire zero; 
 
 
   // Instantiate the unit under test (UUT)
-  alu dut (.rda(rda), .rdx(rdx), .alu_decode(alu_decode), .result(result), .Hi(hi), .Lo(lo), .remain(remain));
+  alu dut (.rda(rda), .rdx(rdx), .alu_decode(alu_decode), .result(result), .Hi(hi), .Lo(lo), .remain(remain), .zero(zero));
 
   // Initialize testbench
   initial begin

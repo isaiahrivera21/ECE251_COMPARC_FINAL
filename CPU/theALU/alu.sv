@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-module alu (alu_decode, rda, rdx, result, Hi, Lo, remain);
+module alu (alu_decode, rda, rdx, result, Hi, Lo, remain, zero);
 
 	parameter n  = 32; 
 	parameter m  = 4;
@@ -9,10 +9,13 @@ module alu (alu_decode, rda, rdx, result, Hi, Lo, remain);
 
 	output logic[(n - 1):0] result,Hi,Lo,remain;
 	output logic[(n + n - 1):0] Hilo;
+	output logic zero; 
 
 	//zero flag 
-	assign zero = (result == {n{1'b0}}); 
+	// assign zero = (result == {n{1'b0}}); 
 	//look into what zero flag does in context of data path. Though zero flag == 1 when the reuslt == 0 
+
+	assign zero = (rda - rdx) ? 1 : 0; //if A - B = 0, asser the zero flag
 
 
 
