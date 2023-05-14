@@ -36,7 +36,7 @@ module Control_Unit_tb;
    initial
    begin: apply_stimulus
       #50; 
-      opcode = 6'b000000; 
+      opcode = 6'b000011; 
       funct  = 6'b000100; 
 
       #1000;

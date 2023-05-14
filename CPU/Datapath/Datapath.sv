@@ -48,7 +48,7 @@ module Datapath(rst, alu_out,result);
       begin
 
       //#40;
-      #50;
+      #500;
 
       CLK = ~CLK;
 
@@ -165,7 +165,7 @@ module Datapath(rst, alu_out,result);
 
 
 
-
+//problem: ALU_SRC mux not doing right thing. sel pin is not asserted 
 
 
 

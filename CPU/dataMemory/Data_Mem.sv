@@ -37,10 +37,10 @@ module Data_Mem(clk,write_enable,addr,writedata,readdata);
    //
    logic [(n-1):0] RAM[0:(2**m - 1)];
 
-   assign readdata = RAM[addr[(n-1):2]]; 
+   assign readdata = RAM[addr[(n-1):2]];  
 
    always @(posedge clk) 
-      if (write_enable) RAM[addr[(n-1):2]] <= writedata;
+      if (write_enable) RAM[addr[(n-1):2]] <= writedata; 
 
 
 endmodule

@@ -44,20 +44,20 @@ module eReg_File_tb;
    begin: apply_stimulus
       //lets try writtin to a register
       WE = 1;  //allowed to write to a register 
-      #10;
+      #100;
       A3 = 5'b11010; //write to reg 1 
       //A3 = 5'b0000;
-      #10;
+      #100;
       WD = 10001111111110101111001110111101; 
-      #10; 
+      #100; 
       WE = 0; 
       #10; 
       A1 = 1'b0; //read to reg 1 
-      #10;
+      #100;
       $display("Register: %b     Data in Reg: %b", A1, RD1);
-      #10;
+      #100;
       A2 = 5'b11010; 
-      #10
+      #100;
       $display("Register: %b     Data in Reg: %b", A2, RD2);
       $finish;
    end

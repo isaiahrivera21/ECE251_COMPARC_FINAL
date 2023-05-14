@@ -34,11 +34,7 @@ module Reg_File(A1,A2,A3,WD,WE,clk,RD1,RD2);
    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
    //
 
-   always @(clk) begin 
-
-      RD1 <= register[A1];
-      RD2 <= register[A2];
-
+   always @(posedge clk) begin 
       if (WE) begin
          register[A3] <= WD; 
       end
@@ -46,6 +42,11 @@ module Reg_File(A1,A2,A3,WD,WE,clk,RD1,RD2);
       //hardcoded zero register 
       register[0] = 0; 
          end 
+
+   assign RD1 = register[A1];
+   assign RD2 = register[A2];
+
+
 
 endmodule
 

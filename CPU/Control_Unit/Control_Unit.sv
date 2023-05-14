@@ -15,7 +15,7 @@
 `include "../theCPUcontrol/CPUcontrol.sv"
 `include "../ALU_Decoder/ALU_Decoder.sv"
 
-module Control_Unit(opcode,funct,regWrite, regDesination, aluSource, branch, memWrite, memToReg, jump, jal, jr,alu_ctrl);
+module Control_Unit(opcode, funct, regWrite, regDesination, aluSource, branch, memWrite, memToReg, jump, jal, jr, alu_ctrl);
 
    //
    // ---------------- PARAMETER DECLARATIONS ----------------

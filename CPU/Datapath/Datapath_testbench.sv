@@ -49,15 +49,12 @@ module Datapath_tb;
    begin: apply_stimulus
    //#10 clock_enable <= 0;
    //#100 pc_n <= 32'b0; 
-   
-   #100
-   
 
    //#10 clock_enable <= 1;
    //$display("%b",pc_n); 
 
-   #200 rst <= 1;
-   #1000
+   #1500 rst <= 1;
+   #500
    rst <= 0;
    #195     
    
