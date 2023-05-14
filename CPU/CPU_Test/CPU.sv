@@ -131,7 +131,7 @@ module CPU(rst, reg_dst,reg_write,alu_src, branch, mem_write,mem_to_reg, alu_ctr
    Data_Mem data_mem(CLK, mem_write, alu_out, read_data_2,data_mem_out); 
    pcMux memtoreg_mux(alu_out, data_mem_out, mem_to_reg,result); 
    //pcMux pc_add4 (pc_plus_4,32'b0,0,pc_next); 
-   pcMux pc_ad(pc_plus_4, pc, 1'b0, pc_next); 
+   // pcMux pc_ad(pc_plus_4, pc, 1'b0, pc_next); 
 
 
 
@@ -144,7 +144,7 @@ module CPU(rst, reg_dst,reg_write,alu_src, branch, mem_write,mem_to_reg, alu_ctr
    assign pc_src = zero_flag & branch; 
    assign shift_signimm = signimm << 2; //might need to be a function, might need to be shifted the opposite way. 
    Adder pc_branch_addr(shift_signimm, pc_plus_4, pc_branch); 
-   // pcMux next_pcmux(pc_plus_4, pc_branch, pc_src,pc_next);
+   pcMux next_pcmux(pc_plus_4, pc_branch, pc_src,pc_next);
 
 
 
