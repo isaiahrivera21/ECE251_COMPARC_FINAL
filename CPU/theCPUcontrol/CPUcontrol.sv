@@ -3,10 +3,10 @@
 module CPUcontrol(
       input [5:0] opcode,
       output reg[1:0] aluOP,
-      output reg regWrite, regDesination, aluSource, Branch, memWrite, memToReg, jump, jal, jr ,mem_read    
+      output reg regWrite, regDesination, aluSource, Branch, memWrite, memToReg, jump, jal, jr
     );
 
-always @(*)
+always @(opcode)
 begin
  case(opcode) 
  6'b000000:  // R type
@@ -27,11 +27,11 @@ begin
  6'b000001:  // BEQ
    begin
     regWrite        = 1'b0;
-    regDesination   = 1'bx;
+    regDesination   = 1'b0; //don't care
     aluSource       = 1'b0;
     Branch          = 1'b1;
     memWrite        = 1'b0;
-    memToReg        = 1'bx;
+    memToReg        = 1'b0; //don't care
     aluOP           = 2'b01;
     jump            = 1'b0;
     jal             = 1'b0; 
@@ -55,11 +55,11 @@ begin
  6'b000011:  // sw
    begin
     regWrite        = 1'b0;
-    regDesination   = 1'bx;
+    regDesination   = 1'b0; //don't care
     aluSource       = 1'b1;
     Branch          = 1'b0;
     memWrite        = 1'b1;
-    memToReg        = 1'bx;
+    memToReg        = 1'b0; //don't care
     aluOP           = 2'b00;
     jump            = 1'b0;
     jal             = 1'b0; 
@@ -87,7 +87,7 @@ begin
     Branch          = 1'b0;
     memWrite        = 1'b0;
     memToReg        = 1'b0;
-    aluOP           = 2'b1x;
+    aluOP           = 2'b10; //don't care
     jump            = 1'b0;
     jal             = 1'b0; 
     jr              = 1'b0; 
@@ -101,7 +101,7 @@ begin
     Branch          = 1'b0;
     memWrite        = 1'b0;
     memToReg        = 1'b0;
-    aluOP           = 2'b1x;  //???
+    aluOP           = 2'b10;  //don't care
     jump            = 1'b0;
     jal             = 1'b0; 
     jr              = 1'b0;    
@@ -122,12 +122,12 @@ begin
  6'b001000:  // JUMP
    begin
     regWrite        = 1'b0;
-    regDesination   = 1'bx;
-    aluSource       = 1'bx;
-    Branch          = 1'bx;
+    regDesination   = 1'b0; // don't care
+    aluSource       = 1'b0; // don't care
+    Branch          = 1'b0; //don't care
     memWrite        = 1'b0;
-    memToReg        = 1'bx;
-    aluOP           = 2'bxx;
+    memToReg        = 1'b0; //don't care
+    aluOP           = 2'b00; //don't care
     jump            = 1'b1;
     jal             = 1'b0; 
     jr              = 1'b0;   
@@ -135,15 +135,15 @@ begin
  6'b001001:  // JAL
    begin
     regWrite        = 1'b0;
-    regDesination   = 1'bx;
-    aluSource       = 1'bx;
-    Branch          = 1'bx;
+    regDesination   = 1'b0;
+    aluSource       = 1'b0;
+    Branch          = 1'b0;
     memWrite        = 1'b0;
-    memToReg        = 1'bx;
-    aluOP           = 2'bxx;
+    memToReg        = 1'b0;
+    aluOP           = 2'b00;
     jump            = 1'b1;
     jal             = 1'b1; 
-    jr              = 1'b0;  
+    jr              = 1'b0;  //alot of dc here 
    end
                   /////////////////////////////////////  
 //  6'b001011:  // JR

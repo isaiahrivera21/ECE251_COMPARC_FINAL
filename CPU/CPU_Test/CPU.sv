@@ -46,7 +46,8 @@ module CPU(rst, reg_dst,reg_write,alu_src, branch, mem_write,mem_to_reg, alu_ctr
 
       begin
 
-      #40;
+      //#40;
+      #50;
 
       CLK = ~CLK;
 
@@ -133,6 +134,7 @@ module CPU(rst, reg_dst,reg_write,alu_src, branch, mem_write,mem_to_reg, alu_ctr
    //pcMux pc_add4 (pc_plus_4,32'b0,0,pc_next); 
    // pcMux pc_ad(pc_plus_4, pc, 1'b0, pc_next); 
 
+   //next up ---> THE CONTROL LINES 
 
 
 

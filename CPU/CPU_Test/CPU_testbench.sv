@@ -16,7 +16,7 @@
 
 module CPU_tb;
 
-   reg      reg_dst, reg_write, alu_src, mem_write, mem_to_reg; 
+   reg      reg_dst, reg_write, alu_src, branch, mem_write, mem_to_reg; 
    reg      [3:0] alu_ctrl; 
    reg rst; 
    // reg      [31:0]  pc_n; 
@@ -54,9 +54,10 @@ module CPU_tb;
    reg_write = 1; 
    reg_dst = 0; 
    alu_src = 1; 
+   branch = 0; 
    mem_write = 0; //mem write was 1 
    mem_to_reg= 0; 
-   alu_ctrl = 4'b0111; 
+   alu_ctrl = 4'b0001; 
 
    //#80 pc_n <= 32'b0; 
    //$display("%b",pc_n); 
@@ -72,15 +73,24 @@ module CPU_tb;
    #60;
    //$display("%b",pc_n); 
 
-   #150 rst <= 1;
-   #10000
+   #200 rst <= 1;
+   #1000
    rst <= 0;
+   #195     
+   reg_write = 1; 
+   reg_dst = 1; 
+   alu_src = 0; 
+   branch = 0; 
+   mem_write = 0; //mem write was 1 
+   mem_to_reg= 0; 
+   alu_ctrl = 4'b0011; 
    
 
 
 
       #10000
    //$display("Register: %b     Data in Reg: %b", A3, register[A3]);
+
    
       
       $finish;
@@ -89,9 +99,9 @@ module CPU_tb;
    //
    // ---------------- INSTANTIATE UNIT UNDER TEST (UUT) ----------------
    //
-   CPU uut(.rst(rst), .reg_dst(reg_dst), .reg_write(reg_write), .alu_src(alu_src), .mem_write(mem_write), .mem_to_reg(mem_to_reg), .alu_ctrl(alu_ctrl), .alu_out(alu_out), .result(result));
+   CPU uut(.rst(rst), .reg_dst(reg_dst), .reg_write(reg_write), .alu_src(alu_src), .branch(branch), .mem_write(mem_write), .mem_to_reg(mem_to_reg), .alu_ctrl(alu_ctrl), .alu_out(alu_out), .result(result));
 
-
+   //timing issue: pins need to change the moment the instruction starts. if at an akward time it throws everything off
 endmodule
 
 // `endif // example_tb
