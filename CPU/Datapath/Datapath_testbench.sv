@@ -9,15 +9,15 @@
 
 `timescale 1ns/100ps
 
-`include "./CPU.sv" //name of module here
+`include "./Datapath.sv" //name of module here
 //`include "../Clock/clock.sv"
 
 //CPU(clock,clock_enable,reg_dst,reg_write,alu_src,mem_write,mem_to_reg,alu_ctrl, || alu_out,result);
 
-module CPU_tb;
+module Datapath_tb;
 
-   reg      reg_dst, reg_write, alu_src, branch, mem_write, mem_to_reg; 
-   reg      [3:0] alu_ctrl; 
+   //reg      reg_dst, reg_write, alu_src, branch, mem_write, mem_to_reg; 
+   //reg      [3:0] alu_ctrl; 
    reg rst; 
    // reg      [31:0]  pc_n; 
    // reg clk; 
@@ -31,7 +31,7 @@ module CPU_tb;
    //
    initial
      begin
-        $dumpfile("CPU.vcd"); // for Makefile, make dump file same as module name
+        $dumpfile("Datapath.vcd"); // for Makefile, make dump file same as module name
         $dumpvars(0, uut);
       //   $monitor("A is %b, B is %b, C is %b", a, b, c);
       //   #50 A = 4'b1100;
@@ -51,43 +51,16 @@ module CPU_tb;
    //#100 pc_n <= 32'b0; 
    
    #100
-   reg_write = 1; 
-   reg_dst = 0; 
-   alu_src = 1; 
-   branch = 0; 
-   mem_write = 0; //mem write was 1 
-   mem_to_reg= 0; 
-   alu_ctrl = 4'b0001; 
-
-   //#80 pc_n <= 32'b0; 
-   //$display("%b",pc_n); 
-   // #40 $display("%b",clock);
-   // #40 $display("%b",clock);
-   // #40 $display("%b",clock);
-   // #40 $display("%b",clock);
-   // #40 $display("%b",clock);
    
 
    //#10 clock_enable <= 1;
-
-   #60;
    //$display("%b",pc_n); 
 
    #200 rst <= 1;
    #1000
    rst <= 0;
    #195     
-   reg_write = 1; 
-   reg_dst = 1; 
-   alu_src = 0; 
-   branch = 0; 
-   mem_write = 0; //mem write was 1 
-   mem_to_reg= 0; 
-   alu_ctrl = 4'b0011; 
    
-
-
-
       #10000
    //$display("Register: %b     Data in Reg: %b", A3, register[A3]);
 
@@ -99,7 +72,7 @@ module CPU_tb;
    //
    // ---------------- INSTANTIATE UNIT UNDER TEST (UUT) ----------------
    //
-   CPU uut(.rst(rst), .reg_dst(reg_dst), .reg_write(reg_write), .alu_src(alu_src), .branch(branch), .mem_write(mem_write), .mem_to_reg(mem_to_reg), .alu_ctrl(alu_ctrl), .alu_out(alu_out), .result(result));
+   Datapath uut(.rst(rst), .alu_out(alu_out), .result(result));
 
    //timing issue: pins need to change the moment the instruction starts. if at an akward time it throws everything off
 endmodule

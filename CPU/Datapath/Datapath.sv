@@ -9,8 +9,8 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-`ifndef CPU
-`define CPU
+`ifndef DATAPATH
+`define DATAPATH
 
 `include "../ALU_Decoder/ALU_Decoder.sv"
 `include "../instructionMemory/instrMem.sv"
@@ -23,10 +23,11 @@
 `include "../Clock/clock.sv"
 `include "../dataMemory/Data_Mem.sv"
 `include "../adder/Adder.sv"
+`include "../Control_Unit/Control_Unit.sv"
 
 
 //need a text file to put in for instruction memory 
-module CPU(rst, reg_dst,reg_write,alu_src, branch, mem_write,mem_to_reg, alu_ctrl, alu_out,result);
+module Datapath(rst, alu_out,result);
 
    //
    // ---------------- PARAMETER DECLARATIONS ----------------
@@ -67,15 +68,20 @@ module CPU(rst, reg_dst,reg_write,alu_src, branch, mem_write,mem_to_reg, alu_ctr
    // input logic    clock_enable; 
 
    //for now w/ no control unit we will make the contorl inputs input logics to test it out 
-   //input logic [(n-1): 0]  pc_next; 
-   input logic    reg_dst; 
-   input logic    reg_write; 
-   input logic    alu_src; 
-   input logic    branch; 
-   input logic    mem_write; 
-   input logic    mem_to_reg; 
+   //input logic [(n-1): 0]  pc_next;
 
-   input logic [3:0]    alu_ctrl; 
+    
+   logic    reg_dst; 
+   logic    reg_write; 
+   logic    alu_src; 
+   logic    branch; 
+   logic    mem_write; 
+   logic    mem_to_reg; 
+   logic    jump;
+   logic    jal;
+   logic    jr; 
+   logic [3:0]    alu_ctrl; 
+
 
 
    
@@ -123,6 +129,11 @@ module CPU(rst, reg_dst,reg_write,alu_src, branch, mem_write,mem_to_reg, alu_ctr
    pcAdder pc_plus4(pc,pc_plus_4);
    //assign pc_next = pc_plus_4;
    instrMem instr_mem(pc,instr); 
+
+
+   //---------------------------------------(CONTROL_UNIT)-------------------------------//
+   Control_Unit control_unit(instr[31:26],instr[5:0],reg_write,reg_dst,alu_src,branch,mem_write,mem_to_reg,jump,jal,jr,alu_ctrl); 
+
    pcMux reg_dst_mux(instr[20:16], instr[15:11],reg_dst,write_reg); //NOT 32 need to change parameter 
    defparam reg_dst_mux.n = 5; 
    Reg_File register_file(instr[25:21], instr[20:16], write_reg, result, reg_write, CLK, srcA, read_data_2); 
@@ -147,6 +158,10 @@ module CPU(rst, reg_dst,reg_write,alu_src, branch, mem_write,mem_to_reg, alu_ctr
    assign shift_signimm = signimm << 2; //might need to be a function, might need to be shifted the opposite way. 
    Adder pc_branch_addr(shift_signimm, pc_plus_4, pc_branch); 
    pcMux next_pcmux(pc_plus_4, pc_branch, pc_src,pc_next);
+
+   
+   //, reg_dst,reg_write,alu_src, branch, mem_write,mem_to_reg, alu_ctrl,
+   //Control_Unit(opcode, funct, regWrite, regDesination, aluSource, branch, memWrite, memToReg, jump, jal, jr, alu_ctrl);
 
 
 
