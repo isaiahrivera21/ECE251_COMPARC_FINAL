@@ -37,4 +37,23 @@ The lists of modules include:
 
 #### TESTING 
 
+We generated 3 different codes to test our CPU on. We hand compiled based off our ISA and ran them all successfully. 
+
+The first being leaf procedure: 
+![6](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/e8e00105-94da-45fa-b697-4160d0fb366d) 
+with out put succesful on gtk wave  
+![5](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/2f14b0d5-051d-4736-9cc3-3391941476c7)
+
+The second being a nested procedure: 
+
+
+The third being fibbinocci: 
+
+
+
+
+Improvements for future: 
+Pipelining – take in multiple instructions instead of single cycle 
+Assembler – generate the code for us instead of hand compiling 
+
 
