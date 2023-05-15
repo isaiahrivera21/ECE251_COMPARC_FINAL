@@ -1,0 +1,27 @@
+addi $sp $zero 252
+addi $a0, $zero , 3
+jal 0X10 hex
+j 0x1A end
+fib: addi $sp, $sp, -12
+sw $ra, 0($sp)
+sw $s0, 4($sp)
+sw $s1, 8($sp)
+addi $s0, $a0, 0
+beq $0, $s0, done 0x24
+addi $t0, $0, 1
+beq $t0, $s0, 0x1C  
+addi $a0, $s0, -1
+jal fib 0X10
+addi $s1, $v0, 0
+addi $a0, $s0, -2
+jal fib 0X10
+add $v0, $v0, $s1
+j finish 0x54
+Done: add $v0 $0 $s0
+J finish 0x54
+finish:lw $s1, 8($sp)
+lw $s0, 4($sp)
+lw $ra, 0($sp) 
+addi $sp, $sp, 12
+jr $ra
+end: addi $v0 $v0 0
