@@ -44,6 +44,8 @@ A majority of the design descision made were based of the MIPS Data path. Howeve
 #### TESTING 
 
 We generated 3 different codes to test our CPU on. We hand compiled based off our ISA and ran them all successfully. 
+ 
+ TO TEST YOU MUST CHANGE THE TXT NAME IN instrmem.sv to the one you want. NEXT YOU NEED TO PUT THE FILE IN THE Datapath FOLDER. 
 
 The first being leaf procedure: 
 ![6](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/e8e00105-94da-45fa-b697-4160d0fb366d) 
@@ -51,6 +53,8 @@ with out put succesful on gtk wave
 ![5](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/2f14b0d5-051d-4736-9cc3-3391941476c7)
 
 The second being a nested procedure: 
+![test2](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/b6f0e17e-588f-4b8f-b528-8bc62dd537b3)
+
 
 
 The third being fibbinocci: 
@@ -59,7 +63,10 @@ The third being fibbinocci:
 
 
 
+
 Improvements for future: 
 Pipelining – take in multiple instructions instead of single cycle 
 Assembler – generate the code for us instead of hand compiling 
+
+
 
