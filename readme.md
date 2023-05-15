@@ -38,7 +38,7 @@ The lists of modules include:
 
 ### THE DESIGN DECISIONS 
 
-
+A majority of the design descision made were based of the MIPS Data path. However, modifications to the datapath had to be made in order to incoperate jump and link (JAL) and JR (Jump register). Two new outputs were added to the control Unit in order to decide whether specific muxes would be on or off. For JAL a mux was made to decide between the result from data memory and or the next instruction that jal will link to the return address. Another mux was also added to write this address to the return address register. This mux chooses between the return adress register and the result from the value that would be normally written for other instructions. Lastly, a mux was added to determine if the next adresss in the program counter should be from the return adress register, an adder that increment the program counter or from a jump instruction. 
 
 
 #### TESTING 
