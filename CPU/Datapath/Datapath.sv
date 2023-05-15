@@ -183,7 +183,7 @@ module Datapath(rst, alu_out,result);
    //JAL 
    pcMux result_mux(non_jump_rslt, pc_plus_4, jal, result); 
    pcMux write_to_ra(write_reg,5'b11111,jal,register_val); 
-   defparam write_to_ra.n = 5; 
+   defparam reg_dst_mux.n = 5; 
 
 
    //JR 

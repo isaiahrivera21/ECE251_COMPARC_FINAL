@@ -74,8 +74,8 @@ module ALU_Decoder(funct,ALU_Op,ALU_Control);
       case(ALU_Op)
          2'b00    : ALU_Control = 4'b0001;  //add
          2'b01    : ALU_Control = 4'b0010;  //subtract
-         2'b10    : ALU_Control = 4'b1100;
-         default: 
+         2'b10    : ALU_Control = 4'b1100; 
+         2'b11: 
 
             case(funct)
                6'b000000    : ALU_Control = 4'b0011;  //add
@@ -92,9 +92,24 @@ module ALU_Decoder(funct,ALU_Op,ALU_Control);
 
 
             endcase 
+      default: 
+         case(funct)
+               6'b000000    : ALU_Control = 4'b0011;  //add
+               6'b000001    : ALU_Control = 4'b0100;  //subtract
+               6'b000010    : ALU_Control = 4'b0101;  //multiply  
+               6'b000011    : ALU_Control = 4'b0110;  //divide 
+               6'b000100    : ALU_Control = 4'b0111;  //or 
+               6'b000101    : ALU_Control = 4'b1000;  //and
+               6'b000110    : ALU_Control = 4'b1001;  //xor 
+               6'b000111    : ALU_Control = 4'b1010;  //sll 
+               6'b001000    : ALU_Control = 4'b1011;  //srl 
+               6'b001001    : ALU_Control = 4'b1100;  //slt
+               default      : ALU_Control = 4'b0000;  //means something is wrong
+
 
       endcase
       //might need to change the wat this is done 
+      endcase
       
 
    end

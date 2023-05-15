@@ -35,7 +35,7 @@ module Data_Mem(clk,write_enable,addr,writedata,readdata);
    //
    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
    //
-   logic [(n-1):0] RAM[0:(2**m - 1)];
+   logic [(n-1):0] RAM[0:63];
 
    assign readdata = RAM[addr[(n-1):2]];  
 

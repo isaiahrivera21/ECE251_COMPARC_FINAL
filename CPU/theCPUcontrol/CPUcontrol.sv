@@ -18,7 +18,7 @@ begin
     Branch          = 1'b0;
     memWrite        = 1'b0;
     memToReg        = 1'b0;
-    aluOP           = 2'b10;
+    aluOP           = 2'b11;
     jump            = 1'b0;
     jal             = 1'b0; 
     jr              = 1'b0; 
@@ -134,7 +134,7 @@ begin
    end
  6'b001001:  // JAL
    begin
-    regWrite        = 1'b0;
+    regWrite        = 1'b1;
     regDesination   = 1'b0;
     aluSource       = 1'b0;
     Branch          = 1'b0;
@@ -147,7 +147,7 @@ begin
    end
                   ///////////////////////////////////// 
 
-  6'b001001:  // JAL
+  6'b001010:  // JR
    begin
     regWrite        = 1'b0;
     regDesination   = 1'b0;
