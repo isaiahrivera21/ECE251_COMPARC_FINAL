@@ -149,7 +149,7 @@ module Datapath(rst, alu_out,result);
    //---------------------------------------(CONTROL_UNIT)-------------------------------//
    Control_Unit control_unit(instr[31:26],instr[5:0],reg_write,reg_dst,alu_src,branch,mem_write,mem_to_reg,jump,jal,jr,alu_ctrl); 
 
-   pcMux reg_dst_mux(instr[20:16], instr[15:11],reg_dst,write_reg); //NOT 32 need to change parameter 
+   pcMux reg_dst_mux(instr[20:16], instr[15:11], reg_dst,write_reg); //NOT 32 need to change parameter //need to swap for 
    defparam reg_dst_mux.n = 5; 
    Reg_File register_file(instr[25:21], instr[20:16], register_val, result, reg_write, CLK, srcA, read_data_2); 
    Sign_Extend sign_extend(instr[15:0], signimm); 
@@ -183,9 +183,12 @@ module Datapath(rst, alu_out,result);
    //JAL 
    pcMux result_mux(non_jump_rslt, pc_plus_4, jal, result); 
    pcMux write_to_ra(write_reg,5'b11111,jal,register_val); 
+   defparam write_to_ra.n = 5; 
+
 
    //JR 
    pcMux instr_mux(jump_pc_rslt,srcA,jr,pc_next); 
+
 
    
 

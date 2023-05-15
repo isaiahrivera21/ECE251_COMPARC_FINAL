@@ -74,6 +74,7 @@ module ALU_Decoder(funct,ALU_Op,ALU_Control);
       case(ALU_Op)
          2'b00    : ALU_Control = 4'b0001;  //add
          2'b01    : ALU_Control = 4'b0010;  //subtract
+         2'b10    : ALU_Control = 4'b1100;
          default: 
 
             case(funct)
@@ -86,7 +87,7 @@ module ALU_Decoder(funct,ALU_Op,ALU_Control);
                6'b000110    : ALU_Control = 4'b1001;  //xor 
                6'b000111    : ALU_Control = 4'b1010;  //sll 
                6'b001000    : ALU_Control = 4'b1011;  //srl 
-               6'b001001    : ALU_Control = 4'b1100;  //slt 
+               6'b001001    : ALU_Control = 4'b1100;  //slt
                default      : ALU_Control = 4'b0000;  //means something is wrong
 
 

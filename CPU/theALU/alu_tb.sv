@@ -79,7 +79,7 @@ module alu_tb;
     end
     #10;
  // Test slt operation
-    rda = 32'hFFFFFFFF;
+    rda = 32'h00000010;
     rdx = 32'h00000001;
     alu_decode = 4'b1100; // slt
     #10; // wait 10 time units

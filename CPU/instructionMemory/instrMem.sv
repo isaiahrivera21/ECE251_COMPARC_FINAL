@@ -6,7 +6,7 @@ module instrMem(pc, instr);
     reg [31:0] allInstr [0:31];
 
     initial begin
-        $readmemb("sp_test.txt", allInstr,0,2); //start adr 0 end adr 1 
+        $readmemb("recursive_add_exe", allInstr,0,15); //start adr 0 end adr 1 
     end
      
      always@(pc) //whenever program counter changes 

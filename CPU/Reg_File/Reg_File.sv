@@ -50,7 +50,9 @@ module Reg_File(A1,A2,A3,WD,WE,clk,RD1,RD2);
       $display("Data in Reg 2: %32b", register[2]);
       $display("Data in Reg 3: %32b", register[3]);
       $display("Data in Reg 4: %32b", register[4]);
-      $display("Data in Reg 5: %32b", register[29]);
+      $display("Data in Reg 29: %32b", register[29]);
+      $display("Data in Reg 31: %32b", register[31]);
+
 
       end
 

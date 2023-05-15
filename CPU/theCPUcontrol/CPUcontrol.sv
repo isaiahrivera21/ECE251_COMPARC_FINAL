@@ -82,7 +82,7 @@ begin
  6'b000101:  // ANDI
    begin
     regWrite        = 1'b1;
-    regDesination   = 1'b1;
+    regDesination   = 1'b0;
     aluSource       = 1'b1;
     Branch          = 1'b0;
     memWrite        = 1'b0;
@@ -109,7 +109,7 @@ begin
  6'b000111:  // SLTI
    begin
     regWrite        = 1'b1;
-    regDesination   = 1'b1;
+    regDesination   = 1'b0;
     aluSource       = 1'b1;
     Branch          = 1'b0;
     memWrite        = 1'b0;
@@ -145,19 +145,35 @@ begin
     jal             = 1'b1; 
     jr              = 1'b0;  //alot of dc here 
    end
-                  /////////////////////////////////////  
+                  ///////////////////////////////////// 
+
+  6'b001001:  // JAL
+   begin
+    regWrite        = 1'b0;
+    regDesination   = 1'b0;
+    aluSource       = 1'b0;
+    Branch          = 1'b0;
+    memWrite        = 1'b0;
+    memToReg        = 1'b0;
+    aluOP           = 2'b00;
+    jump            = 1'b0;
+    jal             = 1'b0; 
+    jr              = 1'b1;  //alot of dc here 
+   end 
+
+
 //  6'b001011:  // JR
 //    begin
-//   //   regDesination = 1'b0;
-//   //   aluSource = 1'b0;
-//   //   memToReg = 1'b0;
-//   //   regWrite = 1'b0;
-//   //   //mem_read = 1'b0;
-//   //   memWrite = 1'b0;
-//   //  // beq = 1'b1;
-//   //   //bne = 1'b0;
-//   //   aluOP = 2'b01;
-//   //   jump = 1'b0;   
+//     regDesination = 1'b0;
+//     aluSource = 1'b0;
+//     memToReg = 1'b0;
+//     regWrite = 1'b0;
+//     //mem_read = 1'b0;
+//     memWrite = 1'b0;
+//    // beq = 1'b1;
+//     //bne = 1'b0;
+//     aluOP = 2'b01;
+//     jump = 1'b0;   
 //    end
 
 //  4'b1100:  // BNE
