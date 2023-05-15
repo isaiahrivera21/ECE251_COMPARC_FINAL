@@ -58,7 +58,7 @@ module Datapath_tb;
    rst <= 0;
    #195     
    
-      #10000
+      #100000
    //$display("Register: %b     Data in Reg: %b", A3, register[A3]);
 
    

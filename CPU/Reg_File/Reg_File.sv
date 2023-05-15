@@ -28,7 +28,7 @@ module Reg_File(A1,A2,A3,WD,WE,clk,RD1,RD2);
    input    [(m - 1):0] WD; 
    input                WE, clk;     //write enable and clk (both 1 bit)
    output logic   [(m - 1):0] RD1, RD2; 
-   reg [m:0] register [m];  //32 registers that are 32 bits wide 
+   reg [(m-1):0] register [(m)];  //32 registers that are 32 bits wide 
 
    //
    // ---------------- MODULE DESIGN IMPLEMENTATION ----------------
@@ -50,7 +50,7 @@ module Reg_File(A1,A2,A3,WD,WE,clk,RD1,RD2);
       $display("Data in Reg 2: %32b", register[2]);
       $display("Data in Reg 3: %32b", register[3]);
       $display("Data in Reg 4: %32b", register[4]);
-      $display("Data in Reg 5: %32b", register[5]);
+      $display("Data in Reg 5: %32b", register[29]);
 
       end
 
