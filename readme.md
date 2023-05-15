@@ -15,9 +15,5 @@ The overall design includes several main components, such as the ALU, control un
 The ISA 
     Our ISA is based off of MIPS 
 
-![alt text](https://github.com/[isaiahrivera21]/[ECE251_COMPARC_FINAL]/blob/[report]/1.jpg?raw=true)
 ![1](1.jpg)
 
-![alt text](https://github.com/[isaiahrivera21]/[ECE251_COMPARC_FINAL]/blob/[report]/2.jpg?raw=true)
-
-![alt text](https://github.com/[isaiahrivera21]/[ECE251_COMPARC_FINAL]/blob/[report]/3.jpg?raw=true)
