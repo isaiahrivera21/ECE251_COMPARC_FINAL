@@ -15,7 +15,7 @@ module alu (alu_decode, rda, rdx, result, Hi, Lo, remain, zero);
 	// assign zero = (result == {n{1'b0}}); 
 	//look into what zero flag does in context of data path. Though zero flag == 1 when the reuslt == 0 
 
-	assign zero = (rda - rdx) ? 1 : 0; //if A - B = 0, asser the zero flag
+	assign zero = ((rda - rdx) == 0) ? 1 : 0; //if A - B = 0, asser the zero flag
 
 
 

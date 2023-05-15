@@ -112,6 +112,14 @@ module Datapath(rst, alu_out,result);
    logic [25:0] jump_to_addr; 
    logic [31:0] next_pc_rslt;
 
+   //--------------------------------------(jal logic)---------------------------------//
+   logic [31:0] non_jump_rslt; 
+   logic [4:0]  register_val; 
+
+   //jr logic 
+   logic [31:0] jump_pc_rslt; 
+
+
 
 
 
@@ -143,12 +151,12 @@ module Datapath(rst, alu_out,result);
 
    pcMux reg_dst_mux(instr[20:16], instr[15:11],reg_dst,write_reg); //NOT 32 need to change parameter 
    defparam reg_dst_mux.n = 5; 
-   Reg_File register_file(instr[25:21], instr[20:16], write_reg, result, reg_write, CLK, srcA, read_data_2); 
+   Reg_File register_file(instr[25:21], instr[20:16], register_val, result, reg_write, CLK, srcA, read_data_2); 
    Sign_Extend sign_extend(instr[15:0], signimm); 
    pcMux alu_src_mux(read_data_2,signimm,alu_src,srcB);
    alu alu(alu_ctrl, srcA, srcB, alu_out,hi,lo,remain, zero_flag); 
    Data_Mem data_mem(CLK, mem_write, alu_out, read_data_2,data_mem_out); 
-   pcMux memtoreg_mux(alu_out, data_mem_out, mem_to_reg,result); 
+   pcMux memtoreg_mux(alu_out, data_mem_out, mem_to_reg,non_jump_rslt); 
    //pcMux pc_add4 (pc_plus_4,32'b0,0,pc_next); 
    // pcMux pc_ad(pc_plus_4, pc, 1'b0, pc_next); 
 
@@ -168,9 +176,16 @@ module Datapath(rst, alu_out,result);
 
    //---------------------------(J INSTRUCTION PATH)--------------------------------//
    assign jump_to_addr = instr[25:0] << 2; 
-   pcMux jump_or_plus4 (next_pc_rslt, {pc_plus_4[31:28],jump_to_addr}, jump, pc_next); 
+   pcMux jump_or_plus4 (next_pc_rslt, {pc_plus_4[31:28],jump_to_addr}, jump, jump_pc_rslt); 
 
    //program idea: add immeadiates for a punch of registers. Have it jump to a certain one
+
+   //JAL 
+   pcMux result_mux(non_jump_rslt, pc_plus_4, jal, result); 
+   pcMux write_to_ra(write_reg,5'b11111,jal,register_val); 
+
+   //JR 
+   pcMux instr_mux(jump_pc_rslt,srcA,jr,pc_next); 
 
    
 
