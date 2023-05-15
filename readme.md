@@ -26,6 +26,8 @@ Choices for our design
 ![3](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/98fb5d88-ed0b-48ac-9e19-b9a039a6ff78)
 
 Our ISA supports R, I, and J Type instructions. 
+<img width="660" alt="7" src="https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/99063a56-19b7-4efc-955c-177407baf2f3"> 
+
 
 Our implemenatation uses this diagram 
 ![4](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/5e4b82e4-8767-4d9a-94ae-ec148f9377d2)
@@ -33,6 +35,10 @@ Our implemenatation uses this diagram
 Each module was and tested with its own testbench individually then integrated with each other to create the CPU with all the modules working together. 
 The lists of modules include: 
  Adder, PC adder, ALU Decoder, Clock, Control Unit, CPU, data memory, Data Path, instruction decode, instruction Memory, The ALU, CPU      control, PC mux, program counter, Register file, and sign extender. 
+
+### THE DESIGN DECISIONS 
+
+
 
 
 #### TESTING 
@@ -48,6 +54,7 @@ The second being a nested procedure:
 
 
 The third being fibbinocci: 
+![9](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/073a9126-ee07-48cc-922f-d66f81f28997)
 
 
 
@@ -55,5 +62,4 @@ The third being fibbinocci:
 Improvements for future: 
 Pipelining – take in multiple instructions instead of single cycle 
 Assembler – generate the code for us instead of hand compiling 
-
 
