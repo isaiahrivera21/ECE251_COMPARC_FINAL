@@ -98,6 +98,7 @@ module Datapath(rst, alu_out,result);
    logic   [(n-1): 0]  srcB; 
    logic   [(n-1): 0]  data_mem_out;
    logic   [(n-1): 0]  pc_plus_4;
+
    //logic   [(n-1): 0]  pc_next; 
    //logic   [(n-1): 0]  pc_next;
 
@@ -106,6 +107,12 @@ module Datapath(rst, alu_out,result);
    logic zero_flag; 
    logic [(n-1): 0] pc_branch; 
    logic [(n-1): 0] shift_signimm; 
+   
+   //--------------------------------------(jump logic)---------------------------------//
+   logic [25:0] jump_to_addr; 
+   logic [31:0] next_pc_rslt;
+
+
 
 
 
@@ -154,18 +161,18 @@ module Datapath(rst, alu_out,result);
 
    //--------------------------------------(BEQ path)---------------------------------//
 
-   assign pc_src = zero_flag & branch; 
+   assign pc_src = ( 0 || zero_flag) & (branch); 
    assign shift_signimm = signimm << 2; //might need to be a function, might need to be shifted the opposite way. 
    Adder pc_branch_addr(shift_signimm, pc_plus_4, pc_branch); 
-   pcMux next_pcmux(pc_plus_4, pc_branch, pc_src,pc_next);
+   pcMux next_pcmux(pc_plus_4, pc_branch, pc_src,next_pc_rslt);
+
+   //---------------------------(J INSTRUCTION PATH)--------------------------------//
+   assign jump_to_addr = instr[25:0] << 2; 
+   pcMux jump_or_plus4 (next_pc_rslt, {pc_plus_4[31:28],jump_to_addr}, jump, pc_next); 
+
+   //program idea: add immeadiates for a punch of registers. Have it jump to a certain one
 
    
-   //, reg_dst,reg_write,alu_src, branch, mem_write,mem_to_reg, alu_ctrl,
-   //Control_Unit(opcode, funct, regWrite, regDesination, aluSource, branch, memWrite, memToReg, jump, jal, jr, alu_ctrl);
-
-
-
-//problem: ALU_SRC mux not doing right thing. sel pin is not asserted 
 
 
 

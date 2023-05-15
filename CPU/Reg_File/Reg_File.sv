@@ -41,7 +41,18 @@ module Reg_File(A1,A2,A3,WD,WE,clk,RD1,RD2);
 
       //hardcoded zero register 
       register[0] = 0; 
-         end 
+      end 
+
+      always @(negedge clk) begin
+
+      $display("Data in Reg 0: %32b", register[0]);
+      $display("Data in Reg 1: %32b", register[1]);
+      $display("Data in Reg 2: %32b", register[2]);
+      $display("Data in Reg 3: %32b", register[3]);
+      $display("Data in Reg 4: %32b", register[4]);
+      $display("Data in Reg 5: %32b", register[5]);
+
+      end
 
    assign RD1 = register[A1];
    assign RD2 = register[A2];

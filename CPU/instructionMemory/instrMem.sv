@@ -6,7 +6,7 @@ module instrMem(pc, instr);
     reg [31:0] allInstr [0:31];
 
     initial begin
-        $readmemb("addi_test.txt", allInstr,0,3); //start adr 0 end adr 1 
+        $readmemb("addi_test.txt", allInstr,0,8); //start adr 0 end adr 1 
     end
      
      always@(pc) //whenever program counter changes 
