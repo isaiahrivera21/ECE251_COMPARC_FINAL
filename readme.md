@@ -45,20 +45,29 @@ A majority of the design descision made were based of the MIPS Data path. Howeve
 
 We generated 3 different codes to test our CPU on. We hand compiled based off our ISA and ran them all successfully. 
  
- TO TEST YOU MUST CHANGE THE TXT NAME IN instrmem.sv to the one you want. NEXT YOU NEED TO PUT THE FILE IN THE Datapath FOLDER. 
+ TO TEST YOU MUST CHANGE THE TXT NAME IN instrmem.sv TO THE ONE YOU WANT. NEXT YOU NEED TO PUT THE FILE IN THE Datapath FOLDER. 
 
 The first being leaf procedure: 
 ![6](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/e8e00105-94da-45fa-b697-4160d0fb366d) 
-with out put succesful on gtk wave  
+with output succesful on gtk wave  
 ![5](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/2f14b0d5-051d-4736-9cc3-3391941476c7)
 
 The second being a nested procedure: 
 ![test2](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/b6f0e17e-588f-4b8f-b528-8bc62dd537b3)
 
+here is the output: 
+
+![12](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/e920b7e1-e80d-4abd-b303-7a37ddb087f4)
 
 
 The third being fibbinocci: 
 ![9](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/073a9126-ee07-48cc-922f-d66f81f28997)
+
+here is the output: 
+
+![11](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/6cf361f3-2de7-4262-b13c-17666f25c6d4)
+
+for this run N was equal to 5 so output was 8 SUCCESS!
 
 
 
@@ -70,3 +79,5 @@ Assembler – generate the code for us instead of hand compiling
 
 
 
+
+![12](https://github.com/isaiahrivera21/ECE251_COMPARC_FINAL/assets/99307808/e920b7e1-e80d-4abd-b303-7a37ddb087f4)
